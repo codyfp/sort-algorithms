@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { useEffect } from 'react'
+import sortTableRow from '../components/sortTableRow'
 
 const array = [7, 12, 32, 2, 4, 6, 7, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 const randomArray = [...array].sort(() => Math.random() - 0.5)
@@ -315,6 +316,22 @@ class ArrayPrinter {
 	}
 }
 
+const methodArray = [
+	{ name: 'bubbleSort', array: new ArrayPrinter(bubbleSort(randomArray)) },
+	{ name: 'selectionSort', array: new ArrayPrinter(selectionSort(randomArray)) },
+	{ name: 'insertionSort', array: new ArrayPrinter(insertionSort(randomArray)) },
+	{ name: 'mergeSort', array: new ArrayPrinter(mergeSort(randomArray)) },
+	{ name: 'quickSort', array: new ArrayPrinter(quickSort(randomArray)) },
+	{ name: 'heapSort', array: new ArrayPrinter(heapSort(randomArray)) },
+	{ name: 'countingSort', array: new ArrayPrinter(countingSort(randomArray)) },
+	// { name: 'bucketSort', array: new ArrayPrinter(bucketSort(randomArray)) }, // bucket sort is currently broken
+	{ name: 'timSort', array: new ArrayPrinter(timSort(randomArray)) },
+	{ name: 'cocktailSort', array: new ArrayPrinter(cocktailSort(randomArray)) },
+	{ name: 'combSort', array: new ArrayPrinter(combSort(randomArray)) },
+	{ name: 'shellSort', array: new ArrayPrinter(shellSort(randomArray)) },
+	{ name: 'gnomeSort', array: new ArrayPrinter(gnomeSort(randomArray)) },
+	{ name: 'bogoSort', array: new ArrayPrinter(bogoSort(randomArray)) },
+]
 
 export default function Home() {
 
@@ -322,36 +339,21 @@ export default function Home() {
 		<div className={styles.container}>
 			<h1> Testing copilot</h1>
 			<div id="graph"
-				stlye={{ width: "auto", height: "auto" }}>
+				style={{ width: "auto", height: "auto" }}>
 				The Random Array is: {new ArrayPrinter(randomArray).print()}
-				<br />
-				Using selection Sort: {new ArrayPrinter(selectionSort(randomArray)).print()}
-				<br />
-				Using Bubble Sort: {new ArrayPrinter(bubbleSort(randomArray)).print()}
-				<br />
-				Using Insertion Sort: {new ArrayPrinter(insertionSort(randomArray)).print()}
-				<br />
-				Using Merge Sort: {new ArrayPrinter(mergeSort(randomArray)).print()}
-				<br />
-				Using Quick Sort: {new ArrayPrinter(quickSort(randomArray)).print()}
-				<br />
-				Using Heap Sort: {new ArrayPrinter(heapSort(randomArray)).print()}
-				<br />
-				Using Counting Sort: {new ArrayPrinter(countingSort(randomArray)).print()}
-				<br />
-				{/* Using Bucket Sort: {new ArrayPrinter(bucketSort(randomArray)).print()} */}
-				<br />
-				Using Tim Sort: {new ArrayPrinter(timSort(randomArray)).print()}
-				<br />
-				Using Cocktail Sort: {new ArrayPrinter(cocktailSort(randomArray)).print()}
-				<br />
-				Using Comb Sort: {new ArrayPrinter(combSort(randomArray)).print()}
-				<br />
-				Using Shell Sort: {new ArrayPrinter(shellSort(randomArray)).print()}
-				<br />
-				Using Gnome Sort: {new ArrayPrinter(gnomeSort(randomArray)).print()}
-				<br />
-				Using Bogo Sort: {new ArrayPrinter(bogoSort(randomArray)).print()}
+
+				<table className={styles["table"]}>
+					<tr>
+						<th>Algorithm</th>
+						<th>Array</th>
+						<th>Time</th>
+					</tr>
+					{methodArray.map((method) => {
+						return (
+							sortTableRow(method.name, method.array)
+						)
+					})}
+				</table>
 			</div>
 		</div>
 	)
