@@ -114,3 +114,12 @@
     flex-direction: column;
   }
 }
+
+
+.table {
+	width: 100%;
+	margin-bottom: 1rem;
+	background-color: transparent;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
