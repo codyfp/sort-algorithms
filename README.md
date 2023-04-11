@@ -1,3 +1,9 @@
+Lol this does not work since the first sort sorts the original randomized array by the looks
+
+but if you so desire here's the vercel link
+https://sort-algorithms-i9lb5barc-codyfp.vercel.app/
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
